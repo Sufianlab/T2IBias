@@ -121,7 +121,7 @@ Automatic inference:
 Human evaluation:
 - Nine diverse annotators labeled images following a written instruction sheet (included in notebooks/ or data/).
 - For each image annotators recorded perceived gender presentation, perceived race/ethnicity, age group, and an optional free-text rationale.
-- Inter-annotator agreement (Cohen’s kappa / Fleiss’ kappa) and label aggregation procedures (majority vote, consensus thresholds) are computed and supplied with results.
+- Inter-annotator agreement and label aggregation procedures (majority vote, consensus thresholds) are computed and supplied with results.
 
 ---
 
