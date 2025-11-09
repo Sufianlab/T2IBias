@@ -2,148 +2,192 @@
 
 Uncovering Societal Bias Encoded in the Latent Space of Text-to-Image Generative Models
 
----
+Authors: Abu Sufian, Cosimo Distante, Marco Leo, Hanan Salam  
 
-## Overview
-
-T2IBias is a reproducible analysis and code collection for the study titled:
-
-"T2IBias: Uncovering Societal Bias Encoded in the Latent Space of Text-to-Image Generative Models"
-
-Abstract:  
-In this research we generated 5,000 text-to-image outputs using 10 profession-related, demographically neutral prompts. Each evaluated model generated 1,000 images (100 images per profession). After evaluating these images, we found that the majority of the open-source models examined display demographic biases: high-profile jobs were biased toward white males, caregiving roles were disproportionately feminized, and marginalized groups were underrepresented or stereotyped.
-
-This repository contains the notebooks and supporting materials used to generate, analyze, and evaluate the images produced by multiple open-source text-to-image models.
+Accepted at: First Interdisciplinary Workshop on Responsible AI for Value Creation — Copenhagen, Denmark, Dec. 1st 2025
 
 ---
 
-## Contents
+## Abstract
 
-- Notebooks (five .ipynb notebooks uploaded):
-  - Notebook 1 — Data generation using pretrained text-to-image models (image sampling and prompt list)
-  - Notebook 2 — Post-processing and quality filtering (image cleaning, deduplication)
-  - Notebook 3 — Automatic demographic inference (tooling used to infer perceived demographic attributes)
-  - Notebook 4 — Statistical analysis and visualization (aggregate bias metrics, charts)
-  - Notebook 5 — Human-evaluation interface and results aggregation (manual labels, inter-annotator agreement)
+In this research we generated 5,000 text-to-image outputs using 10 profession-related, demographically neutral prompts. Each evaluated model generated 1,000 images (100 images per profession). After evaluating these images by a nine-member diverse human team, we found that the majority of the open-source models examined display demographic biases: high-profile professions were disproportionately depicted as white males, caregiving roles were predominantly feminized, and marginalized groups were underrepresented or stereotyped.
 
-Note: Replace the above notebook titles with the actual filenames if they differ. See "Folder structure" below.
+Generated Dataset: https://drive.google.com/file/d/1gQkKor-4dtKx9tJWf7z3N753ETY759bA/view?usp=drive_link
 
 ---
 
-## Folder structure (suggested)
+## Repository summary
+
+This repository contains the code, notebooks, and supporting materials used to (1) Images from multiple open-source text-to-image models using a fixed prompt set, (2) post-process and filter generated images, (3) automatically and manually infer perceived demographic attributes, and (4) compute and visualize bias metrics across professions and models.
+
+The uploaded notebooks each contain code to generate images from one pretrained text-to-image model using operations in the model's latent/feature space. Together they produce the experiment set described in the paper.
+
+---
+
+## Notebooks (uploaded)
+
+Each notebook corresponds to a single pretrained open-source text-to-image model and includes sampling code, seeds, and generation hyperparameters. Replace the placeholder filenames below with the actual notebook filenames you uploaded if they differ.
 
 - notebooks/
-  - 01_generate_images.ipynb
-  - 02_postprocess_images.ipynb
-  - 03_demographic_inference.ipynb
-  - 04_analysis_visualization.ipynb
-  - 05_human_evaluation.ipynb
-- data/
-  - prompts.txt
-  - generated_images/ (per-model subfolders)
-  - annotations/
-- results/
-  - figures/
-  - aggregated_metrics.csv
-- requirements.txt
-- README.md
+  - 01_modelA_generate.ipynb — sampling and checkpoint info for Model A
+  - 02_modelB_generate.ipynb — sampling and checkpoint info for Model B
+  - 03_modelC_generate.ipynb — sampling and checkpoint info for Model C
+  - 04_modelD_generate.ipynb — sampling and checkpoint info for Model D
+  - 05_modelE_generate.ipynb — sampling and checkpoint info for Model E
 
-Adjust paths to match the repository layout you uploaded.
+For reproducibility, each notebook records:
+- the prompt list (10 demographically neutral profession prompts),
+- random seed(s),
+- sampling hyperparameters (guidance scale, steps, temperature, sampler),
+- exact model checkpoint / Hugging Face repo id (or commit hash),
+- output folder layout.
 
 ---
 
-## Getting started (reproduce the experiments)
+## Suggested folder structure
+
+- notebooks/                    — the five uploaded notebooks
+- data/
+  - prompts.txt                  — the 10 profession prompts used
+  - generated_images/            — per-model subfolders with PNG/JPEG outputs
+  - annotations/                 — human labels and automatic inference outputs (CSV/JSON)
+- results/
+  - figures/                     — plots produced by analysis
+  - aggregated_metrics.csv       — computed bias metrics per model/profession
+- requirements.txt
+- README.md
+- LICENSE
+
+Note: Large image artifacts are not stored in the Git repository. Use Git LFS or the provided Google Drive dataset.
+
+---
+
+## Quick start — reproduce the experiments
 
 1. Clone the repository
    - git clone https://github.com/Sufianlab/T2IBias.git
    - cd T2IBias
 
-2. Recommended: create a Python virtual environment
+2. (Optional but recommended) Create a virtual environment
    - python -m venv .venv
-   - source .venv/bin/activate  (macOS / Linux)
-   - .venv\Scripts\activate     (Windows)
+   - source .venv/bin/activate  # macOS / Linux
+   - .venv\Scripts\activate     # Windows
 
 3. Install dependencies
-   - If you have a requirements.txt: pip install -r requirements.txt
-   - Typical packages used in these notebooks:
-     - jupyterlab / notebook
-     - numpy, pandas
-     - torch (or the framework used by the pretrained model)
-     - transformers, diffusers (if using Hugging Face models)
-     - pillow,opencv-python
-     - matplotlib,seaborn
-     - scikit-learn
-     - tqdm
+   - pip install -r requirements.txt
+   - Typical packages used: jupyterlab, numpy, pandas, torch, transformers, diffusers, pillow, opencv-python, matplotlib, seaborn, scikit-learn, tqdm
 
-   Update the requirements file to match the exact dependencies used in your notebooks.
+4. Download the dataset (images, prompts, annotations)
+   - Use the shared Google Drive link above and place the contents under data/ or update paths in the notebooks.
 
-4. Open and run notebooks
-   - jupyter lab
-   - or open each .ipynb in Colab (if you add a Colab badge or convert kernels) and run cells sequentially.
+5. Run notebooks in order (or open them in Colab)
+   - Each generation notebook is self-contained and can be run end-to-end (GPU recommended).
+   - Notebooks for automatic inference and analysis assume generated images and annotation CSVs exist in data/.
 
-5. Reproduce image generation
-   - Notebook 1 contains the prompts and the code to sample images from each target model.
-   - Ensure you have sufficient GPU resources. Sampling 5,000 images may require multiple hours depending on the model and hardware.
-
-6. Evaluation
-   - Automatic inference is performed in Notebook 3.
-   - Aggregation and plotting are in Notebook 4.
-   - Human evaluation steps and guidelines are in Notebook 5.
+6. Recompute metrics and figures
+   - Run the analysis notebook(s) to regenerate figures in results/figures and aggregated_metrics.csv.
 
 ---
 
-## Dataset & prompts
+## Prompts and generation protocol
 
-- Prompt set: 10 profession-related, demographically neutral prompts (e.g., "A portrait of a person working as a [profession]").
-- Generation protocol:
-  - Per-model: 1,000 images total
-  - Per-profession: 100 images
-  - Total images per experiment: 5,000 images (across models / prompts as used in the paper)
-- Images, prompts, and annotation files are stored under data/ (or a similar folder). If any of these files are large, consider using Git LFS or a separate storage location and add download instructions.
+- Prompt set: 10 demographically neutral prompts focused on professions (e.g., "A photo of a [profession name]").
+- Per-model generation: 1,000 images (100 images × 10 professions).
+- Total images per model: 1,000. Total images in the reported experiment (across five models): 5,000.
+- Human evaluation: Nine annotators independently labeled perceived demographic attributes (gender presentation, perceived race/ethnicity, age group, and confidence/notes). Inter-annotator agreement statistics are computed and reported in the analysis.
 
 ---
 
 ## Models evaluated
 
-This repository uses multiple open-source text-to-image generation models. Please edit the notebooks or the README to list the exact model checkpoints you used, for example:
+List the exact model identifiers (Hugging Face model IDs or checkpoint sources) in each notebook and in this README for reproducibility. Example placeholders — replace with actual models used:
 
-- model-name-1 (checkpoint info or Hugging Face repo)
-- model-name-2
-- ...
+- model-A-id (Hugging Face or checkpoint URL)
+- model-B-id
+- model-C-id
+- model-D-id
+- model-E-id
 
-Include model versions, commit hashes, or Hugging Face model IDs for reproducibility.
+Record versions/hashes and licensing information for each model. If a model’s license restricts redistribution, include only generation instructions and provide pointers to the original checkpoint.
 
 ---
 
 ## Evaluation methodology
 
-- Automatic demographic attribute inference:
-  - Off-the-shelf classifiers or custom-trained models can be used to infer perceived attributes such as perceived gender presentation, perceived race/ethnicity, and age groups. See Notebook 3 for implementation details and classifier references.
-- Human evaluation:
-  - Manual labeling protocol (guidelines, instruction sheets, inter-rater agreement calculation) is described in Notebook 5.
-- Metrics:
-  - Distributional parity (per-profession demographic distributions)
-  - Bias amplification metrics (difference between generated image distributions and expected/neutral baselines)
-  - Statistical tests used are described in Notebook 4.
+Automatic inference:
+- Where used, off-the-shelf classifiers or custom models infer perceived demographic attributes from images. Document classifier training data, thresholds, and limitations inside Notebook 3 (automatic inference).
+- Report classifier performance on relevant validation sets where possible.
 
-Be explicit in the notebooks about the classifiers and datasets used for attribute inference; those choices critically affect interpretation.
+Human evaluation:
+- Nine diverse annotators labeled images following a written instruction sheet (included in notebooks/ or data/).
+- For each image annotators recorded perceived gender presentation, perceived race/ethnicity, age group, and an optional free-text rationale.
+- Inter-annotator agreement (Cohen’s kappa / Fleiss’ kappa) and label aggregation procedures (majority vote, consensus thresholds) are computed and supplied with results.
 
----
-
-## Results (summary)
-
-Key findings (high-level):
-- Many open-source text-to-image models encode demographic biases.
-- High-profile professions were more frequently depicted as white males.
-- Caregiving roles were more often portrayed as female-presenting.
-- Marginalized groups were underrepresented or stereotyped.
-
-Refer to the figures and aggregated_metrics.csv in results/ for the full quantitative breakdown and visualizations.
+Metrics:
+- Distributional parity per profession (proportion of perceived categories)
+- Bias amplification (difference between generated distributions and neutral baseline expectations)
+- Statistical testing (chi-square / Fisher exact tests) where applicable
 
 ---
 
-## Responsible use & ethics
+## Key findings (high-level)
 
-- These notebooks and analyses examine sensitive topics (race, gender, occupation). Exercise care when interpreting automated demographic inferences — these are imperfect and reflect societal perceptions rather than ground-truth identities.
-- Do not use demographic inferences to make decisions about real people.
-- Document all choices (
+- Multiple open-source text-to-image models encode and amplify societal biases.
+- High-prestige occupations were more frequently depicted as white males.
+- Caregiving roles were predominantly depicted as female-presenting.
+- Marginalized groups were underrepresented and often depicted via stereotyped cues.
+
+See results/figures and aggregated_metrics.csv for full quantitative results, visualizations, and per-model breakdowns.
+
+---
+
+## Reproducibility checklist
+
+For publication-quality reproducibility include:
+- Exact model checkpoints, commit hashes, and sampling code.
+- Random seeds and full sampling hyperparameters.
+- Annotator demographics and annotation instructions.
+- All code required to reproduce analyses in a requirements.txt and environment specification (e.g., conda env.yml).
+- A small-scale deterministic example (e.g., 10 images per prompt with fixed seeds) for quick verification.
+
+---
+
+## Ethics, limitations, and responsible use
+
+- The work concerns perceived demographic attributes inferred from images, which are noisy proxies for identity and can reinforce stereotypes. Automatic inferences are not ground-truth and should not be used for decision-making about individuals.
+- Report and discuss limitations (classifier biases, annotator demographics, cultural context) prominently with any public release.
+- If releasing generated images, verify licenses of the source models and obtain appropriate consent and ethical review where required.
+- Provide clear usage guidelines and safeguards to prevent misuse.
+
+---
+
+## Citation
+
+If you use this repository or data please cite:
+
+BibTeX:
+@inproceedings{Sufian2025T2IBias,
+  title = {T2IBias: Uncovering Societal Bias Encoded in the Latent Space of Text-to-Image Generative Models},
+  author = {Abu Sufian and Cosimo Distante and Marco Leo and Hanan Salam},
+  booktitle = {First Interdisciplinary Workshop on Responsible AI for Value Creation},
+  address = {Copenhagen, Denmark},
+  month = {Dec},
+  day = {1},
+  year = {2025}
+}
+
+---
+
+## License
+
+Choose and add a LICENSE file (e.g., MIT, Apache-2.0). Note: licensing restrictions may apply to included pretrained models and to redistribution of generated images; document these explicitly.
+
+---
+
+## Contributing & contact
+
+- Contributions welcome — open an issue to discuss major changes.
+- Preferred workflow: fork → feature branch → PR with tests or reproduction steps.
+- Contact / maintainer: @Sufianlab (GitHub)
+
+Thank you for sharing the notebooks and dataset — this README aims to make the repository easier to understand, reproduce, and extend while clearly documenting the paper, experiment protocol, dataset link, and ethics considerations.
