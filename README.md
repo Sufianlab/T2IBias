@@ -8,7 +8,7 @@ Accepted at: First Interdisciplinary Workshop on Responsible AI for Value Creati
 
 ---
 
-## Abstract
+## Short Abstract
 
 In this research we generated 5,000 text-to-image outputs using 10 profession-related, demographically neutral prompts. Each evaluated model generated 1,000 images (100 images per profession). After evaluating these images by a nine-member diverse human team, we found that the majority of the open-source models examined display demographic biases: high-profile professions were disproportionately depicted as white males, caregiving roles were predominantly feminized, and marginalized groups were underrepresented or stereotyped.
 
@@ -122,11 +122,6 @@ Human evaluation:
 - Nine diverse annotators labeled images following a written instruction sheet (included in notebooks/ or data/).
 - For each image annotators recorded perceived gender presentation, perceived race/ethnicity, age group, and an optional free-text rationale.
 - Inter-annotator agreement (Cohen’s kappa / Fleiss’ kappa) and label aggregation procedures (majority vote, consensus thresholds) are computed and supplied with results.
-
-Metrics:
-- Distributional parity per profession (proportion of perceived categories)
-- Bias amplification (difference between generated distributions and neutral baseline expectations)
-- Statistical testing (chi-square / Fisher exact tests) where applicable
 
 ---
 
