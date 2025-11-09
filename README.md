@@ -161,6 +161,7 @@ For publication-quality reproducibility include:
 If you use this repository or data please cite:
 
 BibTeX:
+
 @inproceedings{Sufian2025T2IBias,
   title = {T2IBias: Uncovering Societal Bias Encoded in the Latent Space of Text-to-Image Generative Models},
   author = {Abu Sufian and Cosimo Distante and Marco Leo and Hanan Salam},
@@ -170,6 +171,10 @@ BibTeX:
   day = {1},
   year = {2025}
 }
+
+Plaintext: 
+
+Abu Sufian, Cosimo Distante, Marco Leo, and Hanan Salam. T2IBias: Uncovering Societal Bias Encoded in the Latent Space of Text-to-Image Generative Models. In Proceedings of the First Interdisciplinary Workshop on Responsible AI for Value Creation, Copenhagen, Denmark, December 1, 2025.
 
 ---
 
