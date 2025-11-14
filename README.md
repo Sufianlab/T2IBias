@@ -14,6 +14,10 @@ In this research we generated 5,000 text-to-image (T2I) outputs using 10 profess
 
 Generated Dataset: https://drive.google.com/file/d/1gQkKor-4dtKx9tJWf7z3N753ETY759bA/view?usp=drive_link
 
+
+<img width="735" height="319" alt="Sample Doctor" src="https://github.com/user-attachments/assets/b97f7064-1c09-4a0a-8d6e-8e18d59eeb5d" />
+
+
 ---
 
 ## Repository summary
