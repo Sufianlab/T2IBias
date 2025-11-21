@@ -10,12 +10,15 @@ Accepted at: First Interdisciplinary Workshop on Responsible AI for Value Creati
 
 ## Short Abstract
 
-In this research we generated 5,000 text-to-image (T2I) outputs using 10 profession-related, demographically neutral prompts using five pouplar open-source T2I generation models. Each evaluated model generated 1,000 images (100 images per profession). After evaluating these images by a nine-member diverse human team, we found that the majority of the open-source models examined display demographic biases: high-profile professions were disproportionately depicted as white males, caregiving roles were predominantly feminized, and marginalized groups were underrepresented or stereotyped.
+In this research, we generated 5,000 text-to-image (T2I) outputs using 10 profession-related, demographically neutral prompts using five popular open-source T2I generation models. Each evaluated model generated 1,000 images (100 images per profession). After evaluating these images by a nine-member diverse human team, we found that the majority of the open-source models examined display demographic biases: high-profile professions were disproportionately depicted as white males, caregiving roles were predominantly feminized, and marginalized groups were underrepresented or stereotyped.
 
 Generated Dataset: https://drive.google.com/file/d/1gQkKor-4dtKx9tJWf7z3N753ETY759bA/view?usp=drive_link
 
 
 <img width="735" height="319" alt="Sample Doctor" src="https://github.com/user-attachments/assets/e6921ce7-bd6a-42b4-9e42-1b19e876e6f9" />
+
+<img width="719" height="322" alt="Sample_Politician" src="https://github.com/user-attachments/assets/9d7b4d96-aac5-4129-837a-436e62039b5f" />
+
 
 
 
